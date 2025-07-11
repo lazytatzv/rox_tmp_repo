@@ -34,6 +34,12 @@ def generate_launch_description():
         parameters=[config_file],
     )
 
-    return LaunchDescription(declared_arguments + [joy_driver_node, mecanum_wheel_controller_node])
+    color_sensor_node = Node(
+        package="color_sensor",
+        executable="color_publisher",
+        name="color_sensor_node",
+    )
+
+    return LaunchDescription(declared_arguments + [joy_driver_node, mecanum_wheel_controller_node, color_sensor_node])
 
 
