@@ -42,18 +42,18 @@ class ColorPublisher(Node):
 def main(args=None):
     rclpy.init(args=args)
     color_publisher_1 = ColorPublisher(0, 0xFC)
-    color_publisher_2 = ColorPublisher(1, 0xFC)
+    #color_publisher_2 = ColorPublisher(1, 0xFC)
     
     executors = rclpy.executors.SingleThreadedExecutor()
     executors.add_node(color_publisher_1)
-    executors.add_node(color_publisher_2)
+    #executors.add_node(color_publisher_2)
     try:
         executors.spin()
     except KeyboardInterrupt:
         pass
     finally:
         color_publisher_1.destroy_node()
-        color_publisher_2.destroy_node()
+        #color_publisher_2.destroy_node()
         rclpy.shutdown()
         print("Color Publisher Nodes have been shut down.")
 
