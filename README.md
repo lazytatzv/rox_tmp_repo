@@ -47,6 +47,22 @@
 
 ## クイックスタート
 
+### 0. サーボモータデバイスの設定
+
+安定したデバイス名を使用するため、udevルールを設定します：
+
+```bash
+# 自動セットアップスクリプトを実行
+./scripts/setup_servo_udev.sh
+
+# または手動でudevルールをインストール
+sudo cp 99-servo-motor.rules /etc/udev/rules.d/
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+```
+
+詳細については [docs/servo-device-setup.md](docs/servo-device-setup.md) を参照してください。
+
 ### 1. Docker環境の起動
 ```bash
 docker-compose up -d
@@ -92,7 +108,9 @@ docker/
 ## トラブルシューティング
 
 ### シリアル通信エラー
-- `/dev/ttyACM0`デバイスの存在確認
+- サーボモータデバイスの設定確認: `ls -la /dev/servo*`
+- udevルールの確認: [docs/servo-device-setup.md](docs/servo-device-setup.md)を参照
+- `/dev/ttyACM0`デバイスの存在確認（古い設定の場合）
 - Dockerコンテナの権限確認
 - ボーレート設定の確認
 

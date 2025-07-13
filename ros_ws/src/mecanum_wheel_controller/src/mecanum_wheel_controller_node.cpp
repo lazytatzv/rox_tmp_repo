@@ -157,7 +157,7 @@ class MecanumWheelControllerNode : public rclcpp::Node {
     this->declare_parameter<double>("wheel_radius", 0.05);
     this->declare_parameter<double>("wheel_base_x", 0.2);
     this->declare_parameter<double>("wheel_base_y", 0.2);
-    this->declare_parameter<std::string>("serial_port", "/dev/ttyACM0");
+    this->declare_parameter<std::string>("serial_port", "/dev/servo");
     this->declare_parameter<int>("baud_rate", 115200);
     this->declare_parameter<std::vector<int64_t>>("motor_ids", {1, 2, 3, 4});
     this->declare_parameter<int>("cmd_vel_timeout_ms", 500);  // Timeout for cmd_vel in ms

@@ -1,0 +1,37 @@
+# udev rules for servo motor devices
+# This file should be placed in /etc/udev/rules.d/99-servo-motor.rules
+#
+# To apply the rules:
+# sudo cp 99-servo-motor.rules /etc/udev/rules.d/
+# sudo udevadm control --reload-rules
+# sudo udevadm trigger
+#
+# To identify your servo motor device characteristics, use:
+# udevadm info -a -n /dev/ttyACM0 | grep -E "idVendor|idProduct|serial"
+# or
+# lsusb -v
+
+# Rule for Arduino-based servo motor controllers (common setup)
+# Create stable symbolic link /dev/servo for the primary servo motor controller
+SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0043", SYMLINK+="servo"
+
+# Rule for CH340/CH341 USB-Serial adapters (another common setup)
+SUBSYSTEM=="tty", ATTRS{idVendor}=="1a86", ATTRS{idProduct}=="7523", SYMLINK+="servo"
+
+# Rule for FTDI USB-Serial adapters
+SUBSYSTEM=="tty", ATTRS{idVendor}=="0403", ATTRS{idProduct}=="6001", SYMLINK+="servo"
+
+# Rule for CP210x USB-Serial adapters
+SUBSYSTEM=="tty", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", SYMLINK+="servo"
+
+# Generic rule for ACM devices (USB CDC class) - fallback option
+# This will match any USB CDC ACM device and create numbered servo links
+SUBSYSTEM=="tty", KERNEL=="ttyACM*", ATTRS{idVendor}=="*", SYMLINK+="servo%n"
+
+# Alternative rule using serial number (if available)
+# Replace "YOUR_SERIAL_NUMBER" with the actual serial number of your device
+# SUBSYSTEM=="tty", ATTRS{serial}=="YOUR_SERIAL_NUMBER", SYMLINK+="servo"
+
+# Rule for multiple servo controllers (if needed)
+# SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0043", ATTRS{serial}=="SERIAL1", SYMLINK+="servo1"
+# SUBSYSTEM=="tty", ATTRS{idVendor}=="2341", ATTRS{idProduct}=="0043", ATTRS{serial}=="SERIAL2", SYMLINK+="servo2"

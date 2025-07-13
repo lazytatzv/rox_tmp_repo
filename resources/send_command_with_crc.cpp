@@ -43,7 +43,7 @@ int main(void) {
   // io_contextを作成
   boost::asio::io_context io_context;
   // シリアルポート開ける
-  boost::asio::serial_port port(io_context, "/dev/ttyACM0");
+  boost::asio::serial_port port(io_context, "/dev/servo");
 
   // ポートの設定
   port.set_option(boost::asio::serial_port_base::baud_rate(115200));
