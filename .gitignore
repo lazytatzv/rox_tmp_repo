@@ -157,3 +157,11 @@ yarn-error.log*
 
 # Generated documentation
 doxygen_generated/
+
+# Test executables and artifacts from resources/
+resources/send_command
+resources/*.o
+resources/a.out
+
+# Temporary udev testing files
+/tmp/udev_test*
