@@ -116,8 +116,8 @@ class JoyDriverNode : public rclcpp::Node {
 
 
     auto upper_msg = std::make_unique<custom_interfaces::msg::UpperMotor>();
-    upper_msg->drive = msg->buttons[1];
-    upper_msg->stop = msg->buttons[2];
+    upper_msg->drive = msg->buttons[1]; // circle
+    upper_msg->stop = msg->buttons[0]; // x
 
 
     //RCLCPP_INFO(this->get_logger(), "linear.x=%.2f, linear.y=%.2f, angular.z=%.2f",

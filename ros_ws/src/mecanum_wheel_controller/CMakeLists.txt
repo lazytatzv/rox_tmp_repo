@@ -19,7 +19,7 @@ find_package(custom_interfaces REQUIRED)
 add_executable(mecanum_wheel_controller_node src/mecanum_wheel_controller_node.cpp)
 
 # Set C++ standard
-target_compile_features(mecanum_wheel_controller_node PUBLIC cxx_std_17)
+target_compile_features(mecanum_wheel_controller_node PUBLIC cxx_std_20)
 
 # Link against dependencies
 ament_target_dependencies(mecanum_wheel_controller_node
