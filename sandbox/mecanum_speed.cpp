@@ -26,8 +26,8 @@ int main(){
         1, 1, (WIDE + LENGTH)/2;
 
     // Aの逆行列を計算
-    Eigen::Matrix3f A_inverse = (A.transpose() * A).inverse() * A.transpose();
-    Eigen::Vector3f speed = A_inverse * speed_m_s;
+    auto A_inverse = (A.transpose() * A).inverse() * A.transpose();
+    auto speed = A_inverse * speed_m_s;
 
     std::cout << "vx = "<< speed[0] << " m/s" << std::endl;//x方向の速度
     std::cout << "vy = "<< speed[1] << " m/s" << std::endl;// y方向の速度
