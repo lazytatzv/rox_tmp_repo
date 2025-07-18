@@ -419,6 +419,11 @@ class MecanumWheelControllerNode : public rclcpp::Node {
     motor3_speed = result3.value_or(-9999);
     motor4_speed = result4.value_or(-9999);
 
+    if (motor1_speed == -9999) {
+      RCLCPP_ERROR(this->get_logger(), "Failed to send velocity command to motor 1");
+    }
+
+
     // Publish motor speeds
     auto motor_feedback_msg = custom_interfaces::msg::MotorFeedback();
     motor_feedback_msg.motor1 = motor1_speed;
